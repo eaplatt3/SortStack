@@ -24,7 +24,6 @@ stack<int> sortStack(stack<int> &input)
 			input.push(tmpStack.top());
 			tmpStack.pop();
 		}
-
 		// push temp in tempory of stack 
 		tmpStack.push(tmp);
 	}

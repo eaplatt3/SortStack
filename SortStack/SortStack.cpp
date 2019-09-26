@@ -3,15 +3,16 @@
 
 using namespace std;
 
-stack<int> sortStack(stack<int> &input)
+stack<int> sortStack(stack<int> &inputStack)
 {
+	//Create Temp Stack 
 	stack<int> tmpStack;
 
-	while (!input.empty())
+	while (!inputStack.empty())
 	{
 		// pop out the first element 
-		int tmp = input.top();
-		input.pop();
+		int tmp = inputStack.top();
+		inputStack.pop();
 
 		cout << "tmp is: " << tmp << endl;
 
@@ -21,7 +22,7 @@ stack<int> sortStack(stack<int> &input)
 		{
 			// pop from temporary stack and push 
 			// it to the input stack 
-			input.push(tmpStack.top());
+			inputStack.push(tmpStack.top());
 			tmpStack.pop();
 		}
 		// push temp in tempory of stack 
@@ -33,22 +34,38 @@ stack<int> sortStack(stack<int> &input)
 
 int main()
 {
-		stack<int> input;
-		input.push(34);
-		input.push(3);
-		input.push(31);
-		input.push(98);
-		input.push(92);
-		input.push(23);
+	//Variables
+	int rNum;
 
-		// This is the temporary stack 
-		stack<int> tmpStack = sortStack(input);
-		cout << "Sorted numbers are:\n";
+	//Orginal Stack
+	stack<int> inputStack;
 
-		while (!tmpStack.empty())
-		{
-			cout << tmpStack.top() << " ";
-			tmpStack.pop();
+	cout << "Unsorted Stack" << endl;
+
+	//Random ints and populates stack 
+	while (inputStack.empty()) {
+
+		for (int i = 0; i < 10; i++) {
+
+			rNum = 1 + rand() % 1000; //Random Gen Stack numbers -> Temp problem
+
+			cout << rNum << " ";
+
+			inputStack.push(rNum);
 		}
+	}
+
+	cout << " " << endl;
+
+	// This is the temporary stack 
+	stack<int> tmpStack = sortStack(inputStack);
+	cout << "Sorted numbers are:\n";
+
+	//Prints orginal stack in sorted order
+	while (!tmpStack.empty())
+	{
+		cout << tmpStack.top() << " ";
+		tmpStack.pop();
+	}
 }
 
